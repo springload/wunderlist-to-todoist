@@ -1,6 +1,8 @@
 wunderlist-to-todoist
 =====================
 
+Converts exported Wunderlist tasks into something that you can import into Todoist.
+
 ##Requirements
 Make sure [php](http://nz2.php.net/manual/en/install.php) is installed.
 
