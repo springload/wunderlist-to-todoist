@@ -50,8 +50,14 @@ foreach ($lists as $list => $tasks) {
 
     foreach ($tasks as $task) {
 
-        $date = date_create($task["created_at"]);
-        $output .= $task["title"] . " " . "[[date " . date_format($date, "d/m Y") . "]]\n";
+        $date = "";
+
+        if (isset($task["due_date"])) {
+            $dateObj = date_create($task["due_date"]);
+            $date = " [[date " . date_format($dateObj, "d/m Y") . "]]";
+        }
+
+        $output .= $task["title"] . $date . "\n";
 
         if (isset($task["note"])) {
             $output .= "[[NOTE]]: " . $task["note"];
