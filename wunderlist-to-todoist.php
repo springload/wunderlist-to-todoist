@@ -1,14 +1,23 @@
 #!/usr/bin/php
 <?php
 
+# Language Settings
+mb_language("Japanese");
+mb_internal_encoding("UTF-8");
+mb_detect_order("UTF-8,JIS,SJIS,EUC-JP,ASCII");
+mb_substitute_character("");
+
+# Timezone Setting
+date_default_timezone_set("Asia/Tokyo");
 error_reporting(E_ALL);
 
 $file = $argv[1];
 $json = file_get_contents($file);
-$data = json_decode($json, true);
+$root = json_decode($json, true);
+$data = $root["data"];
 
 // Quick error check
-if (is_null($data)) {
+if (is_null($data) || is_null($data["tasks"])) {
     print $file . " is not valid JSON. Please check it here: http://jsonformatter.curiousconcept.com/\n\n";
     exit(1);
 }
